@@ -260,19 +260,16 @@ public class Tree1 {
 			return null;
 		ReturnData leftData = process2(x.left);
 		ReturnData rightData = process2(x.right);
-
 		int min = x.value;
 		int max = x.value;
 		if (leftData != null) {
 			min = Math.min(min, leftData.min);
 			max = Math.max(max, leftData.max);
 		}
-
 		if (rightData != null) {
 			min = Math.min(min, rightData.min);
 			max = Math.max(max, rightData.max);
 		}
-
 		boolean isBST = true;
 		if (leftData != null && (!leftData.isBST || leftData.max >= x.value)) {
 			isBST = false;
@@ -381,14 +378,38 @@ public class Tree1 {
 
 }
 
-// 特化 int
-class Node {
-	int value;
-	Node left;
-	Node parent;
-	Node right;
-
-	public Node(Integer integer) {
-		value = integer;
+	// Morris 遍历 时间复杂度为 O(N) 额外空间复杂度为 O(1)
+	public static void morris(Node head) {
+		if (head == null) {
+			return;
+		}
+		Node cur = head;
+		Node mostRight = null;
+		while (cur != null) {
+			mostRight = cur.left;
+			if (mostRight != null) {
+				while (mostRight.right != null && mostRight.right != cur) {
+					mostRight = mostRight.right;
+				}
+				// mostRight 变成了 cur 左子树上 , 最右的节点
+				if (mostRight.right == null) {
+					mostRight.right = cur;
+					cur = cur.left;
+					continue;
+				} else {
+					mostRight.right = null;
+				}
+			}
+			cur = cur.right;
+		}
 	}
-};
+	// 特化 int
+	class Node {
+		int value;
+		Node left;
+		Node parent;
+		Node right;
+		public Node(Integer integer) {
+			value = integer;
+		}
+}

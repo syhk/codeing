@@ -44,6 +44,7 @@ public class TrTree {
 			node.end++;
 		}
 
+		// 传递进来的单词加入过几次
 		public int search(String word) {
 			if (word == null)
 				return 0;
@@ -60,6 +61,41 @@ public class TrTree {
 			return node.end;
 		}
 
-	}
+		// 查询有多少单词是 str 为前缀的
+		public int prefix(String pre) {
+			if (pre == null)
+				return 0;
+			char[] chs = pre.toCharArray();
+			TrieNode node = root;
+			int index = 0;
+			for (int i = 0; i < chs.length; i++) {
+				index = chs[i] - 'a';
+				if (node.nexts[index] == null) {
+					return 0;
+				}
+				node = node.nexts[index];
+			}
+			return node.pass;
+		}
 
+		// 删除：沿路的 pass -- ，最后一个 end -- 也就是单词结尾的 end --
+		public void delete(String word) {
+			if (search(word) != 0)// 确定树中加入过 word 才删除
+			{
+				char[] chs = word.toCharArray();
+				TrieNode node = root;
+				int index = 0;
+				for (int i = 0; i < chs.length; i++) {
+					index = chs[i] - 'a';
+					if (--node.nexts[index].pass == 0) {
+						// c++ 需要析构
+						node.nexts[index] = null;
+						return;
+					}
+					node = node.nexts[index];
+				}
+				node.end--;
+			}
+		}
+	}
 }

@@ -1,4 +1,20 @@
 {
   "cSpell.words": ["Dupilcates", "leetcodework", "nums", "prevrow", "vecnums"],
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "files.associations": {
+    "numeric": "cpp",
+    "deque": "cpp",
+    "list": "cpp",
+    "vector": "cpp",
+    "xstring": "cpp",
+    "xlocale": "cpp",
+    "iterator": "cpp",
+    "queue": "cpp",
+    "stack": "cpp",
+    "xhash": "cpp",
+    "xtree": "cpp",
+    "initializer_list": "cpp",
+    "type_traits": "cpp",
+    "xutility": "cpp"
+  }
 }

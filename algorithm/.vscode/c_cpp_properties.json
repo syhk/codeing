@@ -2,16 +2,13 @@
   "configurations": [
     {
       "name": "windows-gcc-x64",
-      "includePath": [
-        "${workspaceFolder}/**"
-      ],
-      "compilerPath": "D:/language/gcc/bin/gcc.exe",
+      "includePath": ["${workspaceFolder}/**"],
+      "compilerPath": "G:/myapp2/LLVM/bin/clang++.exe",
       "cStandard": "${default}",
       "cppStandard": "${default}",
-      "intelliSenseMode": "windows-gcc-x64",
-      "compilerArgs": [
-        ""
-      ]
+      "intelliSenseMode": "windows-clang-x64",
+      "compilerArgs": [""],
+      "configurationProvider": "ms-vscode.makefile-tools"
     }
   ],
   "version": 4
